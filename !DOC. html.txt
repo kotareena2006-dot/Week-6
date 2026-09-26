@@ -1,0 +1,1472 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Smart College Management System</title>
+
+<style>
+
+/* =============================================
+   GLOBAL STYLES
+============================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background: #f4f6f9;
+    color: #333;
+}
+
+button {
+    cursor: pointer;
+    border: none;
+}
+
+/* =============================================
+   SPLASH PAGE
+============================================= */
+
+#splashPage {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #0b1f3a, #2563eb);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: white;
+}
+
+.splash-content {
+    animation: fadeIn 1s ease-in-out;
+}
+
+.big-logo {
+    width: 150px;
+    height: 150px;
+    margin: auto;
+    border-radius: 50%;
+    background: white;
+    border: 6px solid #fbbf24;
+    color: #0b1f3a;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 48px;
+    font-weight: bold;
+}
+
+.splash-content h1 {
+    margin-top: 25px;
+    font-size: 36px;
+}
+
+.splash-content p {
+    margin: 12px 0 25px;
+    font-size: 18px;
+}
+
+/* =============================================
+   BUTTONS
+============================================= */
+
+.primary-btn {
+    background: #fbbf24;
+    color: #111827;
+    padding: 13px 30px;
+    border-radius: 25px;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.primary-btn:hover {
+    transform: scale(1.05);
+}
+
+.action-btn {
+    background: #2563eb;
+    color: white;
+    padding: 11px 20px;
+    border-radius: 6px;
+    margin-top: 10px;
+}
+
+.action-btn:hover {
+    background: #1d4ed8;
+}
+
+.back-btn {
+    background: #fbbf24;
+    color: #111827;
+    padding: 10px 18px;
+    border-radius: 6px;
+    font-weight: bold;
+}
+
+/* =============================================
+   COMMON HEADER
+============================================= */
+
+.main-header {
+    background: #0b1f3a;
+    color: white;
+    padding: 15px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.mini-logo {
+    width: 50px;
+    height: 50px;
+    background: white;
+    color: #0b1f3a;
+    border: 3px solid #fbbf24;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+}
+
+/* =============================================
+   PORTAL SELECTION
+============================================= */
+
+#portalPage {
+    display: none;
+    min-height: 100vh;
+}
+
+.welcome-section {
+    text-align: center;
+    padding: 40px 20px 20px;
+}
+
+.welcome-section h2 {
+    color: #0b1f3a;
+}
+
+.welcome-section p {
+    margin-top: 10px;
+    color: #666;
+}
+
+.portal-grid {
+    max-width: 1100px;
+    margin: auto;
+    padding: 25px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+}
+
+.portal-card {
+    background: white;
+    padding: 35px 25px;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 5px 18px rgba(0,0,0,0.12);
+    transition: 0.3s;
+}
+
+.portal-card:hover {
+    transform: translateY(-8px);
+}
+
+.portal-icon {
+    font-size: 65px;
+    margin-bottom: 15px;
+}
+
+.portal-card h2 {
+    color: #0b1f3a;
+    margin-bottom: 12px;
+}
+
+.portal-card p {
+    color: #666;
+    line-height: 1.5;
+    min-height: 70px;
+}
+
+/* =============================================
+   LOGIN PAGE
+============================================= */
+
+.login-page {
+    display: none;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #0b1f3a, #2563eb);
+}
+
+.login-container {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.login-box {
+    width: 100%;
+    max-width: 420px;
+    background: white;
+    padding: 40px;
+    border-radius: 18px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+
+.login-logo {
+    width: 75px;
+    height: 75px;
+    margin: auto;
+    margin-bottom: 15px;
+    border-radius: 50%;
+    background: #0b1f3a;
+    border: 4px solid #fbbf24;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.login-box h2 {
+    color: #0b1f3a;
+    margin-bottom: 8px;
+}
+
+.login-box p {
+    color: #666;
+    margin-bottom: 20px;
+}
+
+.login-box form {
+    text-align: left;
+}
+
+.login-box label {
+    display: block;
+    margin-top: 15px;
+    font-weight: bold;
+}
+
+.login-box input[type="text"],
+.login-box input[type="password"] {
+    width: 100%;
+    padding: 12px;
+    margin-top: 7px;
+    border: 1px solid #ccc;
+    border-radius: 7px;
+}
+
+.show-password {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 12px;
+}
+
+.show-password input {
+    width: auto;
+}
+
+.login-btn {
+    width: 100%;
+    margin-top: 20px;
+    padding: 13px;
+    background: #2563eb;
+    color: white;
+    border-radius: 7px;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.login-btn:hover {
+    background: #1d4ed8;
+}
+
+.demo-info {
+    background: #f1f5f9;
+    padding: 12px;
+    margin-top: 20px;
+    border-radius: 8px;
+    font-size: 14px;
+}
+
+/* =============================================
+   DASHBOARD
+============================================= */
+
+.portal-dashboard {
+    display: none;
+    min-height: 100vh;
+}
+
+.dashboard-title {
+    padding: 25px 30px 5px;
+    color: #0b1f3a;
+}
+
+.dashboard-grid {
+    padding: 25px 30px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+    gap: 20px;
+}
+
+.dashboard-card {
+    background: white;
+    padding: 25px 15px;
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.dashboard-card:hover {
+    transform: translateY(-6px);
+    background: #eff6ff;
+}
+
+.dashboard-icon {
+    font-size: 42px;
+    margin-bottom: 10px;
+}
+
+.dashboard-card h3 {
+    color: #0b1f3a;
+    margin-bottom: 8px;
+}
+
+.dashboard-card p {
+    color: #666;
+    font-size: 14px;
+}
+
+/* =============================================
+   CONTENT PANEL
+============================================= */
+
+.content-panel {
+    display: none;
+    background: white;
+    margin: 10px 30px 30px;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.content-panel h2 {
+    color: #0b1f3a;
+    margin-bottom: 18px;
+}
+
+.content-panel h3 {
+    margin: 15px 0 8px;
+}
+
+.content-panel p {
+    margin: 10px 0;
+}
+
+.content-panel ul {
+    padding-left: 25px;
+}
+
+.content-panel li {
+    margin: 8px 0;
+}
+
+/* =============================================
+   TABLE
+============================================= */
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+}
+
+th, td {
+    padding: 12px;
+    border: 1px solid #ddd;
+    text-align: center;
+}
+
+th {
+    background: #0b1f3a;
+    color: white;
+}
+
+/* =============================================
+   FORMS
+============================================= */
+
+input, select, textarea {
+    width: 100%;
+    padding: 11px;
+    margin: 8px 0;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+}
+
+textarea {
+    min-height: 100px;
+}
+
+/* =============================================
+   FOOTER
+============================================= */
+
+footer {
+    background: #0b1f3a;
+    color: white;
+    text-align: center;
+    padding: 15px;
+}
+
+/* =============================================
+   ANIMATION
+============================================= */
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(25px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* =============================================
+   MOBILE RESPONSIVE
+============================================= */
+
+@media(max-width: 800px) {
+
+    .portal-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .dashboard-grid {
+        padding: 15px;
+    }
+
+    .content-panel {
+        margin: 10px 15px 25px;
+        overflow-x: auto;
+    }
+
+    .main-header {
+        padding: 12px 15px;
+    }
+
+    .main-header h2 {
+        font-size: 17px;
+    }
+
+    .login-box {
+        padding: 30px 20px;
+    }
+}
+
+</style>
+
+</head>
+
+<body>
+
+<!-- =============================================
+     1. SPLASH PAGE
+============================================= -->
+
+<section id="splashPage">
+
+```
+<div class="splash-content">
+
+    <div class="big-logo">SC</div>
+
+    <h1>SMART COLLEGE</h1>
+
+    <p>College Management System</p>
+
+    <button class="primary-btn" onclick="showPortalPage()">
+        Enter Portal →
+    </button>
+
+</div>
+```
+
+</section>
+
+<!-- =============================================
+     2. PORTAL SELECTION PAGE
+============================================= -->
+
+<section id="portalPage">
+
+```
+<header class="main-header">
+
+    <div class="header-left">
+
+        <div class="mini-logo">SC</div>
+
+        <div>
+            <h2>Smart College</h2>
+            <small>College Management System</small>
+        </div>
+
+    </div>
+
+</header>
+
+
+<div class="welcome-section">
+
+    <h2>Select Your Portal</h2>
+
+    <p>Please select your role to continue</p>
+
+</div>
+
+
+<div class="portal-grid">
+
+
+    <!-- STUDENT -->
+
+    <div class="portal-card">
+
+        <div class="portal-icon">🎓</div>
+
+        <h2>Student Portal</h2>
+
+        <p>
+            Attendance, Fees, Results, Study Materials,
+            Hostel, Transport and Scholarships.
+        </p>
+
+        <button class="action-btn" onclick="openLogin('studentLogin')">
+            Student Login
+        </button>
+
+    </div>
+
+
+    <!-- STAFF -->
+
+    <div class="portal-card">
+
+        <div class="portal-icon">👩‍🏫</div>
+
+        <h2>Staff Portal</h2>
+
+        <p>
+            Manage attendance, marks, study materials,
+            assignments and student performance.
+        </p>
+
+        <button class="action-btn" onclick="openLogin('staffLogin')">
+            Staff Login
+        </button>
+
+    </div>
+
+
+    <!-- HOD -->
+
+    <div class="portal-card">
+
+        <div class="portal-icon">👨‍💼</div>
+
+        <h2>HOD Portal</h2>
+
+        <p>
+            Manage department, staff, students,
+            reports, results and approvals.
+        </p>
+
+        <button class="action-btn" onclick="openLogin('hodLogin')">
+            HOD Login
+        </button>
+
+    </div>
+
+</div>
+```
+
+</section>
+
+<!-- =============================================
+     3. STUDENT LOGIN
+============================================= -->
+
+<section id="studentLogin" class="login-page">
+
+```
+<div class="login-container">
+
+    <div class="login-box">
+
+        <div class="login-logo">🎓</div>
+
+        <h2>Student Login</h2>
+
+        <p>Login to access your dashboard</p>
+
+        <form onsubmit="loginStudent(event)">
+
+            <label>Student ID / Roll Number</label>
+
+            <input
+                type="text"
+                id="studentUsername"
+                placeholder="Enter Student ID"
+                required
+            >
+
+            <label>Password</label>
+
+            <input
+                type="password"
+                id="studentPassword"
+                placeholder="Enter Password"
+                required
+            >
+
+            <button type="submit" class="login-btn">
+                Login
+            </button>
+
+        </form>
+
+        <div class="demo-info">
+            <b>Demo Credentials</b><br>
+            ID: student<br>
+            Password: 1234
+        </div>
+
+        <button class="back-btn" onclick="backToPortalPage()">
+            ← Back
+        </button>
+
+    </div>
+
+</div>
+```
+
+</section>
+
+<!-- =============================================
+     4. STAFF LOGIN
+============================================= -->
+
+<section id="staffLogin" class="login-page">
+
+```
+<div class="login-container">
+
+    <div class="login-box">
+
+        <div class="login-logo">👩‍🏫</div>
+
+        <h2>Staff Login</h2>
+
+        <p>Login to access staff dashboard</p>
+
+        <form onsubmit="loginStaff(event)">
+
+            <label>Staff ID</label>
+
+            <input
+                type="text"
+                id="staffUsername"
+                placeholder="Enter Staff ID"
+                required
+            >
+
+            <label>Password</label>
+
+            <input
+                type="password"
+                id="staffPassword"
+                placeholder="Enter Password"
+                required
+            >
+
+            <button type="submit" class="login-btn">
+                Login
+            </button>
+
+        </form>
+
+        <div class="demo-info">
+            <b>Demo Credentials</b><br>
+            ID: staff<br>
+            Password: 1234
+        </div>
+
+        <button class="back-btn" onclick="backToPortalPage()">
+            ← Back
+        </button>
+
+    </div>
+
+</div>
+```
+
+</section>
+
+<!-- =============================================
+     5. HOD LOGIN
+============================================= -->
+
+<section id="hodLogin" class="login-page">
+
+```
+<div class="login-container">
+
+    <div class="login-box">
+
+        <div class="login-logo">👨‍💼</div>
+
+        <h2>HOD Login</h2>
+
+        <p>Login to access HOD dashboard</p>
+
+        <form onsubmit="loginHod(event)">
+
+            <label>HOD ID</label>
+
+            <input
+                type="text"
+                id="hodUsername"
+                placeholder="Enter HOD ID"
+                required
+            >
+
+            <label>Password</label>
+
+            <input
+                type="password"
+                id="hodPassword"
+                placeholder="Enter Password"
+                required
+            >
+
+            <button type="submit" class="login-btn">
+                Login
+            </button>
+
+        </form>
+
+        <div class="demo-info">
+            <b>Demo Credentials</b><br>
+            ID: hod<br>
+            Password: 1234
+        </div>
+
+        <button class="back-btn" onclick="backToPortalPage()">
+            ← Back
+        </button>
+
+    </div>
+
+</div>
+```
+
+</section>
+
+<!-- =============================================
+     6. STUDENT DASHBOARD
+============================================= -->
+
+<section id="studentDashboard" class="portal-dashboard">
+
+<header class="main-header">
+
+```
+<div class="header-left">
+    <div class="mini-logo">SC</div>
+    <h2>🎓 Student Dashboard</h2>
+</div>
+
+<button class="back-btn" onclick="logout()">
+    Logout
+</button>
+```
+
+</header>
+
+<h2 class="dashboard-title">Student Services</h2>
+
+<div class="dashboard-grid">
+
+```
+<div class="dashboard-card" onclick="showContent('studentAttendance', 'student-content')">
+    <div class="dashboard-icon">📅</div>
+    <h3>Attendance</h3>
+    <p>View attendance details</p>
+</div>
+
+<div class="dashboard-card" onclick="showContent('studentStudy', 'student-content')">
+    <div class="dashboard-icon">📚</div>
+    <h3>Study Materials</h3>
+    <p>Notes and materials</p>
+</div>
+
+<div class="dashboard-card" onclick="showContent('studentFees', 'student-content')">
+    <div class="dashboard-icon">💳</div>
+    <h3>Fees</h3>
+    <p>Fee details and payment</p>
+</div>
+
+<div class="dashboard-card" onclick="showContent('studentResults', 'student-content')">
+    <div class="dashboard-icon">📊</div>
+    <h3>Results</h3>
+    <p>Semester results</p>
+</div>
+
+<div class="dashboard-card" onclick="showContent('studentAssignments', 'student-content')">
+    <div class="dashboard-icon">📝</div>
+    <h3>Assignments</h3>
+    <p>Assignments and submissions</p>
+</div>
+
+<div class="dashboard-card" onclick="showContent('studentCertificates', 'student-content')">
+    <div class="dashboard-icon">📜</div>
+    <h3>Certificates</h3>
+    <p>Apply for certificates</p>
+</div>
+
+<div class="dashboard-card" onclick="showContent('studentHostel', 'student-content')">
+    <div class="dashboard-icon">🏠</div>
+    <h3>Hostel</h3>
+    <p>Hostel details</p>
+</div>
+
+<div class="dashboard-card" onclick="showContent('studentBus', 'student-content')">
+    <div class="dashboard-icon">🚌</div>
+    <h3>Bus Routes</h3>
+    <p>Transport information</p>
+</div>
+
+<div class="dashboard-card" onclick="showContent('studentScholarship', 'student-content')">
+    <div class="dashboard-icon">🏆</div>
+    <h3>Scholarship</h3>
+    <p>Scholarship information</p>
+</div>
+
+<div class="dashboard-card" onclick="showContent('studentProfile', 'student-content')">
+    <div class="dashboard-icon">👤</div>
+    <h3>My Profile</h3>
+    <p>Personal details</p>
+</div>
+```
+
+</div>
+
+<div id="studentAttendance" class="content-panel student-content">
+    <h2>📅 Attendance Details</h2>
+
+```
+<table>
+    <tr>
+        <th>Subject</th>
+        <th>Total</th>
+        <th>Present</th>
+        <th>Percentage</th>
+    </tr>
+    <tr>
+        <td>Java</td>
+        <td>40</td>
+        <td>35</td>
+        <td>87%</td>
+    </tr>
+    <tr>
+        <td>DBMS</td>
+        <td>40</td>
+        <td>33</td>
+        <td>82%</td>
+    </tr>
+    <tr>
+        <td>Data Mining</td>
+        <td>35</td>
+        <td>30</td>
+        <td>86%</td>
+    </tr>
+</table>
+```
+
+</div>
+
+<div id="studentStudy" class="content-panel student-content">
+    <h2>📚 Study Materials</h2>
+    <p>📄 Java Programming Notes</p>
+    <button class="action-btn">Download</button>
+    <p>📄 DBMS Notes</p>
+    <button class="action-btn">Download</button>
+    <p>📄 Data Mining Notes</p>
+    <button class="action-btn">Download</button>
+</div>
+
+<div id="studentFees" class="content-panel student-content">
+    <h2>💳 Fees Details</h2>
+    <p><b>Total Fees:</b> ₹50,000</p>
+    <p><b>Paid:</b> ₹30,000</p>
+    <p><b>Pending:</b> ₹20,000</p>
+    <button class="action-btn">Pay Now</button>
+</div>
+
+<div id="studentResults" class="content-panel student-content">
+    <h2>📊 Semester Results</h2>
+
+```
+<table>
+    <tr>
+        <th>Subject</th>
+        <th>Marks</th>
+        <th>Grade</th>
+    </tr>
+    <tr>
+        <td>Java</td>
+        <td>85</td>
+        <td>A</td>
+    </tr>
+    <tr>
+        <td>DBMS</td>
+        <td>82</td>
+        <td>A</td>
+    </tr>
+    <tr>
+        <td>Data Mining</td>
+        <td>90</td>
+        <td>A+</td>
+    </tr>
+</table>
+```
+
+</div>
+
+<div id="studentAssignments" class="content-panel student-content">
+    <h2>📝 Assignments</h2>
+    <h3>Java Assignment</h3>
+    <p>Due Date: September 10</p>
+    <button class="action-btn">Submit</button>
+
+```
+<h3>DBMS Assignment</h3>
+<p>Due Date: September 15</p>
+<button class="action-btn">Submit</button>
+```
+
+</div>
+
+<div id="studentCertificates" class="content-panel student-content">
+    <h2>📜 Certificates</h2>
+    <ul>
+        <li>Bonafide Certificate</li>
+        <li>Study Certificate</li>
+        <li>Conduct Certificate</li>
+        <li>Transfer Certificate</li>
+    </ul>
+    <button class="action-btn">Apply</button>
+</div>
+
+<div id="studentHostel" class="content-panel student-content">
+    <h2>🏠 Hostel Information</h2>
+    <p><b>Hostel:</b> College Hostel</p>
+    <p><b>Room Number:</b> B-204</p>
+    <p><b>Room Type:</b> 4 Sharing</p>
+
+```
+<h3>Facilities</h3>
+<ul>
+    <li>WiFi</li>
+    <li>Mess Facility</li>
+    <li>24 Hours Water</li>
+    <li>Security</li>
+    <li>Power Backup</li>
+</ul>
+
+<button class="action-btn">Apply Leave</button>
+```
+
+</div>
+
+<div id="studentBus" class="content-panel student-content">
+    <h2>🚌 College Bus Routes</h2>
+
+```
+<table>
+    <tr>
+        <th>Bus No</th>
+        <th>Route</th>
+        <th>Pickup Time</th>
+    </tr>
+    <tr>
+        <td>01</td>
+        <td>Narasaraopet → College</td>
+        <td>7:30 AM</td>
+    </tr>
+    <tr>
+        <td>02</td>
+        <td>Guntur → College</td>
+        <td>7:00 AM</td>
+    </tr>
+    <tr>
+        <td>03</td>
+        <td>Chilakaluripet → College</td>
+        <td>7:45 AM</td>
+    </tr>
+</table>
+```
+
+</div>
+
+<div id="studentScholarship" class="content-panel student-content">
+    <h2>🏆 Scholarships</h2>
+    <ul>
+        <li>Merit Scholarship</li>
+        <li>Government Scholarship</li>
+        <li>Sports Scholarship</li>
+        <li>SC/ST Scholarship</li>
+    </ul>
+    <button class="action-btn">Apply Now</button>
+</div>
+
+<div id="studentProfile" class="content-panel student-content">
+    <h2>👤 Student Profile</h2>
+    <p><b>Name:</b> Student Name</p>
+    <p><b>Roll Number:</b> 22XX01</p>
+    <p><b>Department:</b> CSE</p>
+    <p><b>Year:</b> 3rd Year</p>
+</div>
+
+</section>
+
+<!-- =============================================
+     7. STAFF DASHBOARD
+============================================= -->
+
+<section id="staffDashboard" class="portal-dashboard">
+
+<header class="main-header">
+
+```
+<div class="header-left">
+    <div class="mini-logo">SC</div>
+    <h2>👩‍🏫 Staff Dashboard</h2>
+</div>
+
+<button class="back-btn" onclick="logout()">
+    Logout
+</button>
+```
+
+</header>
+
+<h2 class="dashboard-title">Staff Services</h2>
+
+<div class="dashboard-grid">
+
+```
+<div class="dashboard-card" onclick="showContent('staffAttendance', 'staff-content')">
+    <div class="dashboard-icon">📅</div>
+    <h3>Attendance</h3>
+    <p>Mark attendance</p>
+</div>
+
+<div class="dashboard-card" onclick="showContent('staffMaterials', 'staff-content')">
+    <div class="dashboard-icon">📚</div>
+    <h3>Materials</h3>
+    <p>Upload materials</p>
+</div>
+
+<div class="dashboard-card" onclick="showContent('staffMarks', 'staff-content')">
+    <div class="dashboard-icon">📊</div>
+    <h3>Marks</h3>
+    <p>Upload marks</p>
+</div>
+
+<div class="dashboard-card" onclick="showContent('staffAssignments', 'staff-content')">
+    <div class="dashboard-icon">📝</div>
+    <h3>Assignments</h3>
+    <p>Create assignments</p>
+</div>
+
+<div class="dashboard-card" onclick="showContent('staffPerformance', 'staff-content')">
+    <div class="dashboard-icon">📈</div>
+    <h3>Performance</h3>
+    <p>Student performance</p>
+</div>
+
+<div class="dashboard-card" onclick="showContent('staffNotifications', 'staff-content')">
+    <div class="dashboard-icon">🔔</div>
+    <h3>Notifications</h3>
+    <p>Send notifications</p>
+</div>
+```
+
+</div>
+
+<div id="staffAttendance" class="content-panel staff-content">
+    <h2>📅 Mark Attendance</h2>
+    <select>
+        <option>Select Class</option>
+        <option>CSE 1st Year</option>
+        <option>CSE 2nd Year</option>
+        <option>CSE 3rd Year</option>
+    </select>
+    <button class="action-btn">Open Register</button>
+</div>
+
+<div id="staffMaterials" class="content-panel staff-content">
+    <h2>📚 Upload Study Material</h2>
+    <input type="text" placeholder="Material Name">
+    <input type="file">
+    <button class="action-btn">Upload</button>
+</div>
+
+<div id="staffMarks" class="content-panel staff-content">
+    <h2>📊 Upload Marks</h2>
+    <input type="text" placeholder="Student Roll Number">
+    <input type="number" placeholder="Enter Marks">
+    <button class="action-btn">Submit Marks</button>
+</div>
+
+<div id="staffAssignments" class="content-panel staff-content">
+    <h2>📝 Create Assignment</h2>
+    <input type="text" placeholder="Assignment Title">
+    <input type="date">
+    <textarea placeholder="Assignment Description"></textarea>
+    <button class="action-btn">Create Assignment</button>
+</div>
+
+<div id="staffPerformance" class="content-panel staff-content">
+    <h2>📈 Student Performance</h2>
+    <p>View student attendance, marks and assignment reports.</p>
+    <button class="action-btn">Generate Report</button>
+</div>
+
+<div id="staffNotifications" class="content-panel staff-content">
+    <h2>🔔 Send Notification</h2>
+    <textarea placeholder="Enter notification"></textarea>
+    <button class="action-btn">Send Notification</button>
+</div>
+
+</section>
+
+<!-- =============================================
+     8. HOD DASHBOARD
+============================================= -->
+
+<section id="hodDashboard" class="portal-dashboard">
+
+<header class="main-header">
+
+```
+<div class="header-left">
+    <div class="mini-logo">SC</div>
+    <h2>👨‍💼 HOD Dashboard</h2>
+</div>
+
+<button class="back-btn" onclick="logout()">
+    Logout
+</button>
+```
+
+</header>
+
+<h2 class="dashboard-title">Department Administration</h2>
+
+<div class="dashboard-grid">
+
+```
+<div class="dashboard-card" onclick="showContent('hodStudents', 'hod-content')">
+    <div class="dashboard-icon">🎓</div>
+    <h3>Students</h3>
+    <p>Manage students</p>
+</div>
+
+<div class="dashboard-card" onclick="showContent('hodStaff', 'hod-content')">
+    <div class="dashboard-icon">👩‍🏫</div>
+    <h3>Staff</h3>
+    <p>Manage staff</p>
+</div>
+
+<div class="dashboard-card" onclick="showContent('hodReports', 'hod-content')">
+    <div class="dashboard-icon">📊</div>
+    <h3>Reports</h3>
+    <p>Department reports</p>
+</div>
+
+<div class="dashboard-card" onclick="showContent('hodAttendance', 'hod-content')">
+    <div class="dashboard-icon">📅</div>
+    <h3>Attendance</h3>
+    <p>Overall attendance</p>
+</div>
+
+<div class="dashboard-card" onclick="showContent('hodResults', 'hod-content')">
+    <div class="dashboard-icon">📈</div>
+    <h3>Results</h3>
+    <p>Results analysis</p>
+</div>
+
+<div class="dashboard-card" onclick="showContent('hodApprovals', 'hod-content')">
+    <div class="dashboard-icon">✅</div>
+    <h3>Approvals</h3>
+    <p>Approve requests</p>
+</div>
+```
+
+</div>
+
+<div id="hodStudents" class="content-panel hod-content">
+    <h2>🎓 Student Management</h2>
+    <button class="action-btn">View Students</button>
+    <button class="action-btn">Add Student</button>
+    <button class="action-btn">Remove Student</button>
+</div>
+
+<div id="hodStaff" class="content-panel hod-content">
+    <h2>👩‍🏫 Staff Management</h2>
+    <button class="action-btn">View Staff</button>
+    <button class="action-btn">Add Staff</button>
+    <button class="action-btn">Performance</button>
+</div>
+
+<div id="hodReports" class="content-panel hod-content">
+    <h2>📊 Department Reports</h2>
+    <ul>
+        <li>Student Strength Report</li>
+        <li>Faculty Report</li>
+        <li>Academic Performance</li>
+        <li>Attendance Report</li>
+    </ul>
+    <button class="action-btn">Generate Report</button>
+</div>
+
+<div id="hodAttendance" class="content-panel hod-content">
+    <h2>📅 Overall Attendance</h2>
+    <p><b>Department Attendance:</b> 85%</p>
+    <p><b>Total Students:</b> 420</p>
+    <p><b>Regular Students:</b> 390</p>
+</div>
+
+<div id="hodResults" class="content-panel hod-content">
+    <h2>📈 Results Analysis</h2>
+    <p><b>Pass Percentage:</b> 92%</p>
+    <p><b>Distinction:</b> 35%</p>
+    <p><b>First Class:</b> 45%</p>
+</div>
+
+<div id="hodApprovals" class="content-panel hod-content">
+    <h2>✅ Pending Approvals</h2>
+    <ul>
+        <li>Student Certificate Requests</li>
+        <li>Student Leave Requests</li>
+        <li>Faculty Leave Requests</li>
+        <li>Department Activities</li>
+    </ul>
+    <button class="action-btn">View Approvals</button>
+</div>
+
+</section>
+
+<!-- =============================================
+     JAVASCRIPT
+============================================= -->
+
+<script>
+
+/* SHOW PORTAL PAGE */
+
+function showPortalPage() {
+    document.getElementById("splashPage").style.display = "none";
+    document.getElementById("portalPage").style.display = "block";
+}
+
+
+/* OPEN LOGIN PAGE */
+
+function openLogin(loginId) {
+
+    document.getElementById("portalPage").style.display = "none";
+
+    document.getElementById(loginId).style.display = "block";
+
+    window.scrollTo(0, 0);
+}
+
+
+/* BACK TO PORTAL PAGE */
+
+function backToPortalPage() {
+
+    const loginPages =
+        document.querySelectorAll(".login-page");
+
+    loginPages.forEach(function(page) {
+        page.style.display = "none";
+    });
+
+    document.getElementById("portalPage").style.display = "block";
+
+    window.scrollTo(0, 0);
+}
+
+
+/* STUDENT LOGIN */
+
+function loginStudent(event) {
+
+    event.preventDefault();
+
+    const username =
+        document.getElementById("studentUsername").value;
+
+    const password =
+        document.getElementById("studentPassword").value;
+
+    if (username === "student" && password === "1234") {
+
+        document.getElementById("studentLogin").style.display = "none";
+
+        document.getElementById("studentDashboard").style.display = "block";
+
+        alert("Student Login Successful!");
+
+    } else {
+
+        alert("Invalid Student ID or Password!");
+    }
+}
+
+
+/* STAFF LOGIN */
+
+function loginStaff(event) {
+
+    event.preventDefault();
+
+    const username =
+        document.getElementById("staffUsername").value;
+
+    const password =
+        document.getElementById("staffPassword").value;
+
+    if (username === "staff" && password === "1234") {
+
+        document.getElementById("staffLogin").style.display = "none";
+
+        document.getElementById("staffDashboard").style.display = "block";
+
+        alert("Staff Login Successful!");
+
+    } else {
+
+        alert("Invalid Staff ID or Password!");
+    }
+}
+
+
+/* HOD LOGIN */
+
+function loginHod(event) {
+
+    event.preventDefault();
+
+    const username =
+        document.getElementById("hodUsername").value;
+
+    const password =
+        document.getElementById("hodPassword").value;
+
+    if (username === "hod" && password === "1234") {
+
+        document.getElementById("hodLogin").style.display = "none";
+
+        document.getElementById("hodDashboard").style.display = "block";
+
+        alert("HOD Login Successful!");
+
+    } else {
+
+        alert("Invalid HOD ID or Password!");
+    }
+}
+
+
+/* SHOW DASHBOARD CONTENT */
+
+function showContent(contentId, contentClass) {
+
+    const allContent =
+        document.querySelectorAll("." + contentClass);
+
+    allContent.forEach(function(content) {
+        content.style.display = "none";
+    });
+
+    const selectedContent =
+        document.getElementById(contentId);
+
+    selectedContent.style.display = "block";
+
+    selectedContent.scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+    });
+}
+
+
+/* LOGOUT */
+
+function logout() {
+
+    const dashboards =
+        document.querySelectorAll(".portal-dashboard");
+
+    dashboards.forEach(function(dashboard) {
+        dashboard.style.display = "none";
+    });
+
+    const contents =
+        document.querySelectorAll(".content-panel");
+
+    contents.forEach(function(content) {
+        content.style.display = "none";
+    });
+
+    document.getElementById("portalPage").style.display = "block";
+
+    window.scrollTo(0, 0);
+}
+
+</script>
+
+</body>
+</html>
